@@ -1,3 +1,14 @@
+
+/* =========================
+   BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
   background: #0b1220;
   color: #e5e7eb;
@@ -11,7 +22,7 @@ body {
 ========================= */
 .container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -24,7 +35,6 @@ h1 {
   text-align: center;
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 5px;
 }
 
 /* =========================
@@ -60,10 +70,16 @@ h1 {
    CHART
 ========================= */
 .chart-container {
-  background: #111827;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.05);
+  width: 100%;
+  max-width: 600px;
+  height: 300px; /* menor e mais compacto */
+  margin: 20px auto;
+  position: relative;
+}
+
+#chart {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* =========================
@@ -96,12 +112,6 @@ select {
   border: 1px solid rgba(255,255,255,0.05);
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
 input {
   padding: 9px;
   border-radius: 8px;
@@ -109,6 +119,12 @@ input {
   background: #0b1220;
   color: #e5e7eb;
   outline: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
 /* =========================
@@ -148,9 +164,27 @@ ul {
 li {
   background: #111827;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 2px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }

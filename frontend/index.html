@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Controle de Gastos</title>
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
-
   <div class="container">
 
     <h1>Controle Financeiro</h1>
 
     <!-- DASHBOARD -->
     <div class="dashboard">
-
       <div class="card">
         <h3>Entradas</h3>
         <p id="income-total">R$ 0,00</p>
@@ -35,10 +28,9 @@
       </div>
 
       <div class="card">
-        <h3>Saldo total</h3>
+        <h3>Saldo Total</h3>
         <p id="balance">R$ 0,00</p>
       </div>
-
     </div>
 
     <!-- GRÁFICO -->
@@ -46,15 +38,12 @@
       <canvas id="chart"></canvas>
     </div>
 
-
     <!-- FORM -->
     <form id="form" class="form-box">
-
       <input type="text" id="description" placeholder="Descrição" required>
       <input type="number" id="amount" placeholder="Valor" required>
 
       <div class="form-row">
-
         <select id="type">
           <option value="income">Entrada</option>
           <option value="expense">Despesa</option>
@@ -66,26 +55,19 @@
           <option value="lazer">Lazer</option>
           <option value="outros">Outros</option>
         </select>
-
       </div>
 
       <button type="submit">Adicionar</button>
-
     </form>
 
     <!-- EXPORT PDF -->
-    <button id="export" class="export-btn">
-      Exportar em PDF
-    </button>
+    <button id="export" class="export-btn">Exportar em PDF</button>
 
     <!-- LISTA -->
     <ul id="list"></ul>
 
   </div>
 
-  <!-- SCRIPT -->
   <script src="script.js"></script>
-
 </body>
-
 </html>
