@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Controle de Gastos V4</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="auth" class="box">
+  <h2>Login</h2>
+
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Senha">
+
+  <button id="btnLogin">Entrar</button>
+  <button id="btnRegister">Cadastrar</button>
+</div>
+
+<div id="app" style="display:none" class="box">
+
+  <h1>Controle de Gastos</h1>
+
+  <button id="btnLogout">Sair</button>
+
+  <div id="balance">Saldo: R$ 0,00</div>
+
+  <form id="form">
+    <input type="text" id="description" placeholder="Descrição" required>
+    <input type="number" id="amount" placeholder="Valor" required>
+
+    <select id="type">
+      <option value="income">Receita</option>
+      <option value="expense">Despesa</option>
+    </select>
+
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <ul id="list"></ul>
+
+</div>
+
+<script src="script.js" type="module"></script>
+</body>
+</html>
