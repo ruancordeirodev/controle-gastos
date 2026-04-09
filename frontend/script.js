@@ -1,14 +1,10 @@
-
-// =====================
-// STORAGE
-// =====================
 const STORAGE_KEY = "finance_v10";
 
 let transactions = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-// =====================
+
 // ELEMENTOS
-// =====================
+
 const form = document.getElementById("form");
 const list = document.getElementById("list");
 
@@ -16,9 +12,9 @@ const incomeEl = document.getElementById("income-total");
 const expenseEl = document.getElementById("expense-total");
 const balanceEl = document.getElementById("balance");
 
-// =====================
+
 // SAVE
-// =====================
+
 function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
 }
@@ -40,7 +36,7 @@ form.addEventListener("submit", (e) => {
     amount,
     type,
     category,
-    date: new Date()
+    date: new Date().toISOString()
   };
 
   transactions.push(transaction);
@@ -59,7 +55,7 @@ function removeTransaction(id) {
 }
 
 // =====================
-// ANALYTICS CORE
+// ANALYTICS
 // =====================
 function analyze(transactions) {
 
@@ -73,9 +69,6 @@ function analyze(transactions) {
 
   const balance = income - expense;
 
-  // =====================
-  // CATEGORY MAP
-  // =====================
   const categories = {};
 
   transactions.forEach(t => {
@@ -87,31 +80,19 @@ function analyze(transactions) {
   const topCategory = Object.entries(categories)
     .sort((a, b) => b[1] - a[1])[0];
 
-  // =====================
-  // RATIO
-  // =====================
   const expenseRatio = income > 0 ? expense / income : 1;
 
-  // =====================
-  // WEEKEND PATTERN
-  // =====================
   let weekendExpense = 0;
 
   transactions.forEach(t => {
     if (t.type !== "expense") return;
 
     const day = new Date(t.date).getDay();
-
-    if (day === 0 || day === 6) {
-      weekendExpense += t.amount;
-    }
+    if (day === 0 || day === 6) weekendExpense += t.amount;
   });
 
   const weekendRatio = expense > 0 ? weekendExpense / expense : 0;
 
-  // =====================
-  // SCORE (V10)
-  // =====================
   let score = 100;
 
   score -= expenseRatio * 50;
@@ -121,9 +102,6 @@ function analyze(transactions) {
 
   score = Math.max(0, Math.min(100, score));
 
-  // =====================
-  // TREND SIMPLE
-  // =====================
   const last5 = transactions.slice(-5);
   const last5Expense = last5
     .filter(t => t.type === "expense")
@@ -131,9 +109,6 @@ function analyze(transactions) {
 
   const trend = last5Expense > expense * 0.4 ? "up" : "stable";
 
-  // =====================
-  // FORECAST (SMOOTHED)
-  // =====================
   const avgExpense = expense / (transactions.length || 1);
   const forecast = income - avgExpense * 1.1;
 
@@ -141,7 +116,6 @@ function analyze(transactions) {
     income,
     expense,
     balance,
-    expenseRatio,
     score: Math.round(score),
     trend,
     forecast,
@@ -160,23 +134,15 @@ function insights(a) {
   else if (a.score >= 50) msg.push("Saúde financeira moderada");
   else msg.push("Risco financeiro alto");
 
-  if (a.weekendRatio > 0.5) {
-    msg.push("Gastos concentrados no fim de semana");
-  }
-
-  if (a.trend === "up") {
-    msg.push("Gasto recente em crescimento");
-  }
-
-  if (a.forecast < 0) {
-    msg.push("Projeção futura negativa");
-  }
+  if (a.weekendRatio > 0.5) msg.push("Gastos no fim de semana elevados");
+  if (a.trend === "up") msg.push("Gastos em crescimento");
+  if (a.forecast < 0) msg.push("Projeção futura negativa");
 
   return msg;
 }
 
 // =====================
-// RENDER LIST
+// LISTA
 // =====================
 function renderList() {
   list.innerHTML = "";
@@ -194,31 +160,83 @@ function renderList() {
   });
 }
 
-// =====================
+
 // DASHBOARD
-// =====================
+
 function renderDashboard(a) {
   incomeEl.textContent = `R$ ${a.income.toFixed(2)}`;
   expenseEl.textContent = `R$ ${a.expense.toFixed(2)}`;
   balanceEl.textContent = `R$ ${a.balance.toFixed(2)}`;
 }
 
-// =====================
-// MAIN RENDER
-// =====================
+
+// GRÁFICO
+
+let chartInstance = null;
+
+function renderChart(a) {
+  const ctx = document.getElementById("chart").getContext("2d");
+
+  const data = {
+    labels: ["Entradas", "Despesas"],
+    datasets: [{
+      label: "Financeiro",
+      data: [a.income, a.expense],
+      backgroundColor: ["#2ecc71", "#e74c3c"]
+    }]
+  };
+
+  if (chartInstance) chartInstance.destroy();
+
+  chartInstance = new Chart(ctx, {
+    type: "doughnut",
+    data
+  });
+}
+
+function exportarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const a = analyze(transactions);
+  const ins = insights(a);
+
+  doc.setFontSize(14);
+  doc.text("RELATÓRIO FINANCEIRO", 10, 10);
+
+  doc.setFontSize(11);
+  doc.text(`Entradas: R$ ${a.income.toFixed(2)}`, 10, 25);
+  doc.text(`Despesas: R$ ${a.expense.toFixed(2)}`, 10, 35);
+  doc.text(`Saldo: R$ ${a.balance.toFixed(2)}`, 10, 45);
+  doc.text(`Score: ${a.score}`, 10, 55);
+
+  let y = 70;
+  doc.text("INSIGHTS:", 10, y);
+  y += 10;
+
+  ins.forEach(i => {
+    doc.text("- " + i, 10, y);
+    y += 10;
+  });
+
+  doc.save("relatorio_financeiro.pdf");
+}
+
+
 function render() {
   const analysis = analyze(transactions);
 
   renderList();
   renderDashboard(analysis);
-
-  const msgs = insights(analysis);
+  renderChart(analysis);
 
   console.log("SCORE:", analysis.score);
-  console.log("INSIGHTS:", msgs);
 }
 
-// =====================
-// INIT
-// =====================
+
 render();
+
+
+// EVENTS
+
+document.getElementById("export").addEventListener("click", exportarPDF);

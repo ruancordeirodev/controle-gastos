@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Controle de Gastos</title>
+
   <link rel="stylesheet" href="style.css">
 
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
 
   <div class="container">
 
-    <h1>Controle Financeiro </h1>
+    <h1>Controle Financeiro</h1>
 
     <!-- DASHBOARD -->
     <div class="dashboard">
 
       <div class="card">
-        <h3>Receitas</h3>
+        <h3>Entradas</h3>
         <p id="income-total">R$ 0,00</p>
       </div>
 
@@ -28,7 +35,7 @@
       </div>
 
       <div class="card">
-        <h3>Saldo</h3>
+        <h3>Saldo total</h3>
         <p id="balance">R$ 0,00</p>
       </div>
 
@@ -39,24 +46,6 @@
       <canvas id="chart"></canvas>
     </div>
 
-    <!-- FILTROS -->
-    <div class="filters">
-
-      <select id="filter-type">
-        <option value="all">Todos tipos</option>
-        <option value="income">Receitas</option>
-        <option value="expense">Despesas</option>
-      </select>
-
-      <select id="filter-category">
-        <option value="all">Todas categorias</option>
-        <option value="alimentacao">Alimentação</option>
-        <option value="transporte">Transporte</option>
-        <option value="lazer">Lazer</option>
-        <option value="outros">Outros</option>
-      </select>
-
-    </div>
 
     <!-- FORM -->
     <form id="form" class="form-box">
@@ -67,7 +56,7 @@
       <div class="form-row">
 
         <select id="type">
-          <option value="income">Receita</option>
+          <option value="income">Entrada</option>
           <option value="expense">Despesa</option>
         </select>
 
@@ -84,14 +73,19 @@
 
     </form>
 
-    <!-- EXPORT -->
-    <button id="export" class="export-btn">Exportar em PDF</button>
+    <!-- EXPORT PDF -->
+    <button id="export" class="export-btn">
+      Exportar em PDF
+    </button>
 
     <!-- LISTA -->
     <ul id="list"></ul>
 
   </div>
 
+  <!-- SCRIPT -->
   <script src="script.js"></script>
+
 </body>
+
 </html>

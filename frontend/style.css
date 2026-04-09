@@ -1,16 +1,6 @@
-/* =========================
-   BASE
-========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #0b1220;
+  color: #e5e7eb;
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -24,7 +14,7 @@ body {
   max-width: 1000px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 /* =========================
@@ -32,7 +22,7 @@ body {
 ========================= */
 h1 {
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 5px;
 }
@@ -43,36 +33,37 @@ h1 {
 .dashboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 .card {
-  background: #1e293b;
-  padding: 14px;
-  border-radius: 12px;
+  background: #111827;
+  padding: 12px;
+  border-radius: 10px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .card h3 {
-  font-size: 13px;
-  color: #94a3b8;
-  margin-bottom: 6px;
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 4px;
 }
 
 .card p {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 /* =========================
    CHART
 ========================= */
 .chart-container {
-  background: #1e293b;
-  padding: 14px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  background: #111827;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 /* =========================
@@ -81,65 +72,67 @@ h1 {
 .filters {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
 select {
-  padding: 10px;
+  padding: 9px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.08);
   background: #0b1220;
-  color: #e2e8f0;
-  outline: none;
+  color: #e5e7eb;
 }
 
 /* =========================
    FORM
 ========================= */
 .form-box {
-  background: #1e293b;
-  padding: 14px;
-  border-radius: 12px;
+  background: #111827;
+  padding: 12px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-}
-
-input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #0b1220;
-  color: #e2e8f0;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
-button {
-  padding: 10px;
-  border: none;
+input {
+  padding: 9px;
   border-radius: 8px;
-  background: #22c55e;
-  color: #0f172a;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  opacity: 0.85;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0b1220;
+  color: #e5e7eb;
+  outline: none;
 }
 
 /* =========================
-   EXPORT
+   BUTTONS
 ========================= */
+button {
+  padding: 9px;
+  border: none;
+  border-radius: 8px;
+  background: #22c55e;
+  color: #0b1220;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
 .export-btn {
   background: #3b82f6;
+  color: white;
 }
 
 /* =========================
@@ -149,32 +142,15 @@ ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 li {
-  background: #1e293b;
+  background: #111827;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-/* =========================
-   RESPONSIVO
-========================= */
-@media (max-width: 768px) {
-
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .filters {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
+  border: 1px solid rgba(255,255,255,0.05);
 }
