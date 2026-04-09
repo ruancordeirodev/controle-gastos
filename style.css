@@ -5,10 +5,9 @@ body {
   color: white;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
 }
 
-.box {
+.container {
   width: 100%;
   max-width: 420px;
   padding: 20px;
@@ -17,31 +16,13 @@ body {
 
 input, select, button {
   width: 100%;
-  margin: 5px 0;
+  margin: 6px 0;
   padding: 10px;
-  border-radius: 6px;
   border: none;
+  border-radius: 6px;
 }
 
 button {
-  background: #00c853;
+  background: green;
   color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  background: #00a844;
-}
-
-#list {
-  list-style: none;
-  padding: 0;
-}
-
-#list li {
-  background: #1e1e1e;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 6px;
 }

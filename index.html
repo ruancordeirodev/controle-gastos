@@ -1,47 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Controle de Gastos V4</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <title>Controle de Gastos</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="auth" class="box">
-  <h2>Login</h2>
+  <div class="container">
+    <h1>Controle de Gastos</h1>
 
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Senha">
+    <div id="balance">Saldo: R$ 0,00</div>
 
-  <button id="btnLogin">Entrar</button>
-  <button id="btnRegister">Cadastrar</button>
-</div>
+    <form id="form">
+      <input type="text" id="description" placeholder="Descrição" required>
+      <input type="number" id="amount" placeholder="Valor" required>
 
-<div id="app" style="display:none" class="box">
+      <select id="type">
+        <option value="income">Receita</option>
+        <option value="expense">Despesa</option>
+      </select>
 
-  <h1>Controle de Gastos</h1>
+      <button type="submit">Adicionar</button>
+    </form>
 
-  <button id="btnLogout">Sair</button>
+    <ul id="list"></ul>
+  </div>
 
-  <div id="balance">Saldo: R$ 0,00</div>
-
-  <form id="form">
-    <input type="text" id="description" placeholder="Descrição" required>
-    <input type="number" id="amount" placeholder="Valor" required>
-
-    <select id="type">
-      <option value="income">Receita</option>
-      <option value="expense">Despesa</option>
-    </select>
-
-    <button type="submit">Adicionar</button>
-  </form>
-
-  <ul id="list"></ul>
-
-</div>
-
-<script src="script.js" type="module"></script>
+  <script src="script.js"></script>
 </body>
 </html>
