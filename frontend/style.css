@@ -1,0 +1,180 @@
+/* =========================
+   BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =========================
+   TITLE
+========================= */
+h1 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.card h3 {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* =========================
+   CHART
+========================= */
+.chart-container {
+  background: #1e293b;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   FILTERS
+========================= */
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #0b1220;
+  color: #e2e8f0;
+  outline: none;
+}
+
+/* =========================
+   FORM
+========================= */
+.form-box {
+  background: #1e293b;
+  padding: 14px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #22c55e;
+  color: #0f172a;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   EXPORT
+========================= */
+.export-btn {
+  background: #3b82f6;
+}
+
+/* =========================
+   LISTA
+========================= */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+li {
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
