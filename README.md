@@ -3,7 +3,7 @@
 Aplicação web para registro e análise de finanças pessoais.
 
 ## Funcionalidades
-- Cadastro de receitas e despesas
+- Cadastro de entradas  e despesas
 - Visualização de saldo
 - Histórico de movimentações
 - Estrutura separada frontend/backend
